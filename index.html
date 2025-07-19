@@ -48,7 +48,7 @@
 
       try {
         const word = reverseMinecraftSeed(seed, isUpper);
-        resultEl.textContent = word ? `Seed word: ${word}` : "Could not decode.";
+        resultEl.textContent = word ? `Seed word: ${word}` : seed == 0 ? `Seed words: pollinating sandboxes` : "Could not decode.";
       } catch (err) {
         resultEl.textContent = err.message;
       }
