@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Seed To Word/s</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+    }
+    input[type="text"] {
+      width: 200px;
+      padding: 5px;
+    }
+    button {
+      margin-left: 10px;
+      padding: 5px 10px;
+    }
+    .result {
+      margin-top: 1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reverse Minecraft Seed</h1>
+  <input type="text" id="seedInput" placeholder="Enter numeric seed">
+  <label>
+    <input type="checkbox" id="uppercaseToggle"> Uppercase
+    <input type="checkbox" id="uppercaseToggle"> Uppercase letters
+  </label>
+  <button onclick="handleConvert()">Convert</button>
+
+  <div class="result" id="resultDisplay"></div>
+
+  <script src="scr.js"></script>
+  <script>
+    function handleConvert() {
+      const input = document.getElementById('seedInput').value;
+      const isUpper = document.getElementById('uppercaseToggle').checked;
+      const resultEl = document.getElementById('resultDisplay');
+
+      const seed = parseInt(input, 10);
+      if (isNaN(seed)) {
+        resultEl.textContent = "Please enter a valid number.";
+        return;
+      }
+
+      try {
+        const word = reverseMinecraftSeed(seed, isUpper);
+        resultEl.textContent = word ? `Seed word: ${word}` : "Could not decode.";
+      } catch (err) {
+        resultEl.textContent = err.message;
+      }
+    }
+  </script>
+</body>
+</html>
